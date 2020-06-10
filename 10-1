@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int fib(int n) {
+        long long one=1,two=0;
+        if(n==1)
+        return 1;
+        unsigned long long res=0;
+        int i;
+        for(i=2;i<=n;i++)
+        {
+            res=(one+two)%1000000007;
+            two=one;
+            one=res;
+        }
+        res=res%1000000007;
+        return res;
+    }
+};
