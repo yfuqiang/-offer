@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int numWays(int n) {
+        int one=2,two=1;
+        int res=0;
+        if(n==0)
+        return 1;
+        if(n==1)
+        return 1;
+        if(n==2)
+        return 2;
+        int i;
+        for(i=3;i<=n;i++)
+        {
+            res=(one+two)%1000000007;
+            two=one;
+            one=res;
+        }
+        return res;
+    }
+};
