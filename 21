@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<int> exchange(vector<int>& nums) {
+        int ji=0,ou=nums.size()-1;
+        while(ji<=ou)
+        {
+            while(ji<nums.size()&&nums[ji]%2==1)
+            {
+                ji++;
+            }
+            while(ou>=0&&nums[ou]%2==0)
+            {
+                ou--;
+            }
+            if(ji<ou)
+            swap(nums[ji],nums[ou]);
+        }
+        return nums;
+    }
+};
