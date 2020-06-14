@@ -1,0 +1,37 @@
+class Solution {
+public:
+    bool verifyPostorder(vector<int>& postorder) {
+        if(postorder.size()==0)
+        return 1;
+        vector<int> inorder=postorder;
+        sort(inorder.begin(),inorder.end());
+        return ispo(inorder,0,inorder.size()-1,postorder,0,postorder.size()-1);
+    }
+    bool ispo(vector<int> inorder,int ibegin,int iend,vector<int> postorder,int pbegin,int pend)
+    {
+        if((ibegin==iend)&&(pbegin==pend))
+        {
+            if(inorder[ibegin]==postorder[pend])
+            return true;
+            else
+            return false;
+        }
+        int p=postorder[pend];
+        int i;
+        for(i=ibegin;i<=iend;i++)
+        {
+            if(inorder[i]==p)
+            break;
+        }
+        if(i>iend)
+        return false;
+        int lp=i-ibegin;
+        int rp=iend-i;
+        if(lp==0)
+        return ispo(inorder,i+1,iend,postorder,pbegin+lp,pend-1);
+        if(rp==0)
+        return ispo(inorder,ibegin,i-1,postorder,pbegin,pbegin+lp-1);
+
+        return ispo(inorder,ibegin,i-1,postorder,pbegin,pbegin+lp-1)&&ispo(inorder,i+1,iend,postorder,pbegin+lp,pend-1);
+    }
+};
