@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int findNthDigit(int n) {
+        int i=1;
+        
+        long digit;
+        while(1)
+        {
+            digit=pow(10,i-1);
+            if(n<=9*digit*i)
+            break;
+            n=n-digit*9*i;
+            i++;
+        }
+        
+        int idx=n%i;
+        if(idx==0)
+        return (digit+n/i-1)%10;
+        char k=to_string(digit+n/i)[idx-1];
+        int res=k-'0';
+        return res;
+    }
+};
