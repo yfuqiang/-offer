@@ -1,0 +1,43 @@
+class Solution {
+public:
+    int maxValue(vector<vector<int>> &grid) {
+    if (grid.empty()) {
+        return 0;
+    }
+
+    // 矩阵的行数和列数
+    int m = grid.size();
+    int n = grid[0].size();
+
+    // 存储当前礼物的最大值
+    std::vector<int> dp(n + 1, 0);
+
+    // dp[j+1]保存上一点的最大值
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            dp[j + 1] = std::max(dp[j], dp[j + 1]) + grid[i][j];
+        }
+    }
+
+    return dp[n];
+
+//    // 初始化第一行的礼物最大值
+//    for (int j = 0; j < n; j++) {
+//        dp[j] = dp[j - 1] + grid[0][j];
+//    }
+//
+//    for (int i = 1; i < m; i++) {
+//        // 初始化第一列的礼物最大值
+//        dp[0] += grid[i][0];
+//
+//        // 因为dp[j]在更新前仍然是上面点的礼物最大值，
+//        // 所以可以利用此压缩空间
+//        for (int j = 1; j < n; j++) {
+//            dp[j] = std::max(dp[j], dp[j - 1]) + grid[i][j];
+//        }
+//    }
+//
+//    return dp[n - 1];
+}
+
+};
