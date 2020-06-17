@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int translateNum(int num) {
+        string k=to_string(num);
+        int count=1;
+        dfs(k,0,count);
+        return count;
+    }
+    void dfs(string k,int begin,int& count)
+    {
+        if(begin==k.size())
+        return;
+        
+        dfs(k,begin+1,count);
+        if(begin+1<k.size()&&k[begin]!='0')
+        {
+            string temp;
+            temp=temp+k[begin]+k[begin+1];
+            int a=stoi(temp);
+            if(a<26)
+            {
+                count++;
+                dfs(k,begin+2,count);
+            }
+        }
+        return;
+    }
+};
