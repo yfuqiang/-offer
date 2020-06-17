@@ -1,0 +1,20 @@
+class Solution {
+public:
+    string minNumber(vector<int>& nums) {
+        vector<string> res;
+        int i;
+        for(i=0;i<nums.size();i++)
+        {
+            res.push_back(to_string(nums[i]));
+        }
+        sort(res.begin(),res.end(),[](string s1,string s2){
+            return s1+s2<s2+s1;
+        });
+        string k;
+        for( i=0;i<res.size();i++)
+        {
+            k+=res[i];
+        }
+        return k;
+    }
+};
