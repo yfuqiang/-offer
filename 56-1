@@ -1,0 +1,27 @@
+class Solution {
+public:
+    vector<int> singleNumbers(vector<int>& nums) {
+        int temp=0;
+        int l1=0,l2=0;
+        for(auto c:nums)
+        {
+            temp^=c;
+        }
+        int x=temp;
+        x=x&(x-1);
+        x=x^temp;
+        int i;
+        for(i=0;i<nums.size();i++)
+        {
+            if(((nums[i])&x)!=0)
+            {
+                l1^=nums[i];
+            }
+            else
+            {
+                l2^=nums[i];
+            }
+        }
+        return {l1,l2};
+    }
+};
