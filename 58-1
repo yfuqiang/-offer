@@ -1,0 +1,22 @@
+class Solution {
+public:
+    string reverseWords(string s) {
+        stringstream ss(s);
+        string k;
+        stack<string> t;
+        while(getline(ss,k,' '))
+        {
+            if(k=="")
+            continue;
+            t.push(k);
+        }
+        string res;
+        while(t.empty()!=1)
+        {
+            res=res+t.top()+' ';
+            t.pop();
+        }
+        res=res.substr(0,res.size()-1);
+        return res;
+    }
+};
