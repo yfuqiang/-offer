@@ -1,0 +1,12 @@
+class Solution {
+public:
+    int add(int a, int b) {
+        while(b)
+        {
+            int carry=unsigned(a&b)<<1;
+            a^=b;
+            b=carry;
+        }
+        return a;
+    }
+};
